@@ -45,13 +45,17 @@ footer {
 html,body {
 	box-sizing: border-box;
 	height: 100%;
+	margin-top: 40px;
 }
 
 nav {
   background-color: #333;         
   display: flex;               
   justify-content: center;       
-  padding: 1em 0;                
+  padding: 1em 0;  
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 nav a {
