@@ -18,7 +18,20 @@
 	<a href="calculators.html">Calculators</a>
   </nav>
   
-  
+   <script>
+        // Test code here
+        let myCart = new Cart();
+        myCart.showTotalAmount();
+
+        let pants = new ItemGroup("Pants", 10.05, 15);
+        myCart.addItemGroup(pants);
+        myCart.showTotalAmount();
+
+        let coat = new ItemGroup("Coat", 99.99, 1);
+        myCart.addItemGroup(coat);
+        myCart.showTotalAmount();
+    </script>
+	
 
 
   

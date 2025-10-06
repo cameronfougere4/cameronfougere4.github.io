@@ -1,6 +1,17 @@
 
+function ItemGroup(name, price, quantity) {
+	this.name = name;
+	this.price = price;
+	this.quantity = quantity;
+}
+
+
 function Cart(){
     this.itemGroups = [];
+	 this.addItemGroup = function(itemGroup) {
+        this.itemGroups.push(itemGroup);
+    }
+	
     this.showTotalAmount = function(){
         if (this.itemGroups.length == 0){
             document.write("<p> You have 0 item, for a total amount of 0$, in your cart! </p>");
@@ -18,18 +29,12 @@ function Cart(){
                 "Total with tax: $" + totalWithTax.toFixed(2) + "</p>");
 			}
 			
-			  this.addItemGroup = function(itemGroup) {
-        this.itemGroups.push(itemGroup);
-    }
+			  
 			
         }
     }
 }
-function ItemGroup(name, price, quantity) {
-	this.name = name;
-	this.price = price;
-	this.quantity = quantity;
-}
+
 
 	
 
