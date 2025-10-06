@@ -47,5 +47,30 @@ html,body {
 	height: 100%;
 }
 
+nav {
+  background-color: #333;         
+  display: flex;               
+  justify-content: center;       
+  padding: 1em 0;                
+}
+
+nav a {
+  color: white;                  
+  text-decoration: none;          
+  margin: 0 2%;                 
+  font-weight: bold;         
+  font-size: 1.1em;  
+  transition: color 0.3s ease;    
+}
+
+nav a:hover {
+  color: lightblue;                
+}
+
+nav a.active {
+  color: green;                
+  border-bottom: 0.2em solid; 
+}
+
 </style>
 
