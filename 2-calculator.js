@@ -1,22 +1,14 @@
 
 
 
-function compute_days() {
+function compute_days(){
     const dob = get_dob();
-
-    // Check that dob is valid
-    if (!dob) {
-        write_answer_days("Please enter a valid date of birth.");
-        return;
-    }
-
-    // Compute age in days
-    const today = new Date();
-    const diffTime = today - dob; // difference in milliseconds
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert to days
-
-    write_answer_days("<p>You are " + diffDays + " days old!</p>" +
-        "<p>Your date of birth is: " + dob.toDateString() + "</p>");
+    
+    // Add code here computing the age in number of days!
+    
+    
+    write_answer_days("Sorry! This function has not yet been modified by the developper. <br>" + 
+    "So far we know that your date of birth is: " + dob )
 }
 
 
