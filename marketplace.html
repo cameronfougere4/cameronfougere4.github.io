@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Cameron Fougere">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marketplace</title>
+  <link rel="stylesheet" href="my_style.css">
+  <script src="1-marketplace.js"></script>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="my_vacation.html">My Vacation</a>
+    <a href="my_artistic_self.html">My Artistic Self</a>
+	<a href="marketplace.html" class="active">Marketplace</a>
+	<a href="calculators.html">Calculators</a>
+  </nav>
+  
+   <script>
+        // Test code here
+        let myCart = new Cart();
+        myCart.showTotalAmount();
+
+        let pants = new ItemGroup("Pants", 10.05, 15);
+        myCart.addItemGroup(pants);
+        myCart.showTotalAmount();
+
+        let coat = new ItemGroup("Coat", 99.99, 1);
+        myCart.addItemGroup(coat);
+        myCart.showTotalAmount();
+    </script>
+	
+
+
+  
+  <footer>
+  This website is made for CS203 labs!
+</footer>
+  
+  </body>
+  
