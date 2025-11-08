@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Artistic Self</title>
   <link rel="stylesheet" href="my_style.css">
-  
+  <script src="nav.js"></script>
   <style>
     body {
     background-image: url('Images/hockey.png');
@@ -50,13 +50,11 @@
   }
 	</body>
 	
-	<nav>
-    <a href="my_artistic_self.html" class="active">My Artistic Self</a>
-    <a href="my_vacation.html">My Vacation</a>
-    <a href="index.html">Home</a>
-	<a href="marketplace.html">Marketplace</a>
-	<a href="calculators.html">Calculators</a>
-  </nav>
+	<nav id="main-nav"></nav>
+<script>
+  setNav(window.location.pathname);
+</script>
+
 	
 	<div class="body_wrapper">
 	
