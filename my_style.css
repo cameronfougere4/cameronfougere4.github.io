@@ -118,6 +118,20 @@ legend {
   color: #0077cc;
 }
 
+main {
+    margin-bottom: 100px;
+}
+
+
+.current_page {
+    font-weight: bold;
+    background-color: lightgray;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
 
 </style>
 
