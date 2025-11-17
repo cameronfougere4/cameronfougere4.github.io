@@ -63,12 +63,31 @@
   
 </table>
 
+<div class="slideshow">
+    <div class="slideshow_img">
+        <img src="Images/hockey.png" style="width:100%">
+    </div>
+
+    <div class="slideshow_img">
+        <img src="Images/montreal.jpg" style="width:100%">
+    </div>
+
+    <div class="slideshow_img">
+        <img src="Images/dogs.jpg" style="width:100%">
+    </div>
+
+    <a id="prev" onclick="previous()">❮ Previous</a>
+    <a id="next" onclick="next()">Next ❯</a>
+</div>
+
  
   </div>
 
 <footer>
   This website is made for CS203 labs!
 </footer>
+  
+  <script src="slideshow.js"></script>
   
 </body>
 </html>
