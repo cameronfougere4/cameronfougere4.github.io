@@ -169,6 +169,51 @@ main {
     }
 }
 
+#todo_section {
+    max-width: 500px;
+    margin: 20px auto;      
+    padding: 10px;
+}
+
+#todo_section h2 {
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+
+#todo_form input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+#todo_form button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+
+#todo_list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+#todo_list li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#todo_list li span.fas.fa-trash {
+    color: red;
+    cursor: pointer;
+}
+
 
 
 </style>
