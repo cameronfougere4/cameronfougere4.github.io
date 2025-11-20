@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Artistic Self</title>
   <link rel="stylesheet" href="my_style.css">
-  <script src="nav.js"></script>
   <style>
     body {
     background-image: url('Images/hockey.png');
@@ -50,10 +49,8 @@
   }
 	</body>
 	
-	<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
+<?php include 'nav.php'; ?>
+
 
 	
 	<div class="body_wrapper">
@@ -63,7 +60,7 @@
 <body>
   <h1 style="color: white;">My Artistic Self</h1>
 
-  <p><a href="index.html" style="color: white;">Home</a></p>
+  <p><a href="index.php" style="color: white;">Home</a></p>
   
   <p class="keyword" id="keyword1">Athletic</p>
   <p class="keyword" id="keyword2">Analytical</p>
@@ -77,9 +74,7 @@
   
   </div>
   
-  <footer>
-  This website is made for CS203 labs!
-</footer>
+  <?php include 'footer.php'; ?>
 
 </body>
 </html>

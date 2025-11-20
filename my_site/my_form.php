@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cam's Quiz</title>
   <link rel="stylesheet" href="my_style.css">
-  <script src="nav.js"></script>
   <script src="form_validate.js"></script>
 </head>
 
 <body onload="setNav(window.location.pathname)">
-  <nav id="main-nav"></nav>
+
+<?php include 'nav.php'; ?>
+
 
   <main>
     <h1>What Type of Student Are You?</h1>
@@ -60,8 +61,8 @@
     </form>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Cam's Quiz</p>
-  </footer>
+  
+<?php include 'footer.php'; ?>
+ 
 </body>
 </html>

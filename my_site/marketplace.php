@@ -7,14 +7,12 @@
   <title>marketplace</title>
   <link rel="stylesheet" href="my_style.css">
   <script src="1-marketplace.js"></script>
-  <script src="nav.js"></script>
 </head>
 <body>
 
-<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
+<?php include 'nav.php'; ?>
+
+
   
    <script>
         // Test code here
@@ -33,9 +31,7 @@
 
 
   
-  <footer>
-  This website is made for CS203 labs!
-</footer>
+  <?php include 'footer.php'; ?>
   
   </body>
   

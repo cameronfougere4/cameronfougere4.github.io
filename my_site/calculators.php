@@ -9,7 +9,6 @@
         
 		<script src="2-calculator_utils.js"> </script>
         <script src="2-calculator.js"> </script>
-		<script src="nav.js"></script>
       
         
         <style> 
@@ -38,11 +37,8 @@
     
     <body>
         
-		<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
-  
+	<?php include 'nav.php'; ?>
+
         <h1> Some calculators! </h1>
 
         
@@ -115,9 +111,8 @@
                 
         </div>
 		
-		<footer>
-  This website is made for CS203 labs!
-</footer>
+		<?php include 'footer.php'; ?>
+		
   
     </body>
 </html>

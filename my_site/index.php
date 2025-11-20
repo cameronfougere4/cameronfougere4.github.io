@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Sunday. Welcome to Cam Fougere's Week 2 Lab</title>
   <link rel="stylesheet" href="my_style.css">
-  <script src="nav.js"></script>
 </head>
 <body>
 
-<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
+<?php include 'nav.php'; ?>
+
+
 
 
   <div class="body_wrapper">
@@ -65,10 +63,10 @@
 
  
   </div>
+  
+  <?php include 'footer.php'; ?>
 
-<footer>
-  This website is made for CS203 labs!
-</footer>
+
   
 </body>
 </html>

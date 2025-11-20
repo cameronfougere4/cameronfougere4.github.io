@@ -6,14 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Dream Vacation</title>
   <link rel="stylesheet" href="my_style.css">
-  <script src="nav.js"></script>
 </head>
 <body>
 
-<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
+<?php include 'nav.php'; ?>
+
 
 
   <div class="body_wrapper">
@@ -28,9 +25,7 @@
 	
 	</div>
 	
-	<footer>
-  This website is made for CS203 labs!
-</footer>
-
+	<?php include 'footer.php'; ?>
+	
 </body>
 </html>
