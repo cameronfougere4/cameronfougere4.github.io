@@ -16,7 +16,7 @@
   <main>
     <h1>What Type of Student Are You?</h1>
 
-    <form id="quizForm" onsubmit="return validate(event)">
+   <form id="quizForm" action="quiz_verification.php" method="GET">
       <fieldset>
         <legend>Find Out Your Student Type!</legend>
 
