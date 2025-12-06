@@ -1,25 +1,23 @@
 let items = JSON.parse(localStorage.getItem("items")) || [];
-renderList();  // Show saved items
+renderList();
 
-function addItem(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const input = document.getElementById("todo_input");
-    const text = input.value.trim();
-
-    if (!text) {
-        alert("Please enter a task.");
-        return false;
+function addItem() {
+    const input = document.getElementById("newItem");
+    const item_text = input.value.trim();
+    if (item_text === "") {
+        alert("Please enter a task!");
+        return;
     }
 
-    const newItem = { text: text, id: Date.now() };
+    const newItem = {
+        text: item_text,
+        id: Date.now()
+    };
     items.push(newItem);
     localStorage.setItem("items", JSON.stringify(items));
 
     renderItem(newItem.text, newItem.id);
-
-    input.value = ""; // Clear input
-    return false;
+    input.value = "";
 }
 
 function renderList() {
@@ -27,8 +25,7 @@ function renderList() {
 }
 
 function renderItem(text, id) {
-    const ul = document.getElementById("todo_list");
-
+    const ul = document.getElementById("todoList");
     const li = document.createElement("li");
     li.dataset.id = id;
 
@@ -36,17 +33,16 @@ function renderItem(text, id) {
     spanText.textContent = text;
     li.appendChild(spanText);
 
-    const trashSpan = document.createElement("span");
-    trashSpan.classList.add("fas", "fa-trash");
-    trashSpan.style.marginLeft = "10px";
-    trashSpan.style.cursor = "pointer";
-
-    trashSpan.addEventListener("click", () => {
+    const trash = document.createElement("span");
+    trash.classList.add("fas", "fa-trash");
+    trash.style.marginLeft = "10px";
+    trash.style.cursor = "pointer";
+    trash.addEventListener("click", () => {
         li.remove();
         items = items.filter(x => x.id !== id);
         localStorage.setItem("items", JSON.stringify(items));
     });
+    li.appendChild(trash);
 
-    li.appendChild(trashSpan);
     ul.appendChild(li);
 }

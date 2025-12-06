@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Sunday. Welcome to Cam Fougere's Week 2 Lab</title>
   <link rel="stylesheet" href="my_style.css">
-  <script src="nav.js"></script>
 </head>
 <body>
 
-<nav id="main-nav"></nav>
-<script>
-  setNav(window.location.pathname);
-</script>
+<?php include 'nav.php'; ?>
+
+
 
 
   <div class="body_wrapper">
@@ -63,31 +61,12 @@
   
 </table>
 
-<div class="slideshow">
-    <div class="slideshow_img">
-        <img src="Images/hockey.png" style="width:100%">
-    </div>
-
-    <div class="slideshow_img">
-        <img src="Images/montreal.jpg" style="width:100%">
-    </div>
-
-    <div class="slideshow_img">
-        <img src="Images/dogs.jpg" style="width:100%">
-    </div>
-
-    <a id="prev" onclick="previous()">❮ Previous</a>
-    <a id="next" onclick="next()">Next ❯</a>
-</div>
-
  
   </div>
-
-<footer>
-  This website is made for CS203 labs!
-</footer>
   
-  <script src="slideshow.js"></script>
+  <?php include 'footer.php'; ?>
+
+
   
 </body>
 </html>
