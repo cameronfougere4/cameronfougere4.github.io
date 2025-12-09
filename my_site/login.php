@@ -1,13 +1,16 @@
 <?php
-// ======= PHP at the very top, before any HTML =======
-$error = ''; // Initialize error variable
+
+$error = ''; 
+$savedUsername = $_COOKIE['todo-username'] ?? ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$username = $_POST['username'] ?? '';
     $enteredPassword = $_POST['password'] ?? '';
-    $hashedPassword = hash("sha256", $enteredPassword); // compute hash of input
+    $hashedPassword = hash("sha256", $enteredPassword); 
     $correctHash = "b14e9015dae06b5e206c2b37178eac45e193792c5ccf1d48974552614c61f2ff";
 
     if ($hashedPassword === $correctHash) {
+		setcookie("todo-username", $username, time() + (86400 * 30));
         header("Location: to-do.php");
         exit();
     } else {
@@ -15,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Optional: Determine base URL for redirection
+
 if ($_SERVER['SERVER_NAME'] === 'localhost') {
-    $BASE_URL = ''; // relative path works for XAMPP
+    $BASE_URL = ''; 
 } else if ($_SERVER['SERVER_NAME'] === 'osiris.ubishops.ca') {
-    $BASE_URL = '/cfougere/'; // replace 'cfougere' with your Osiris username
+    $BASE_URL = '/cfougere/'; 
 } else {
     $BASE_URL = '';
 }
@@ -29,7 +32,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 
         
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +47,18 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 <?php include 'nav.php'; ?>
 
 <main>
+
     <h1>Enter Password to Access Your To-Do List</h1>
 
     <form method="POST" action="">
+	 <label for="username">Username:</label><br>
+        <input 
+            type="text" 
+            name="username" 
+            id="username"
+            value="<?php echo htmlspecialchars($savedUsername); ?>"
+        ><br><br>
+		
         <label for="password">Password:</label><br>
         <input type="password" name="password" id="password"><br><br>
         <button type="submit">Submit</button>
@@ -56,11 +68,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
     <p style="color:red;"><?php echo $error; ?></p>
 <?php } ?>
 
-    <?php
-    if (!empty($error)) {
-        echo "<p style='color:red; font-weight:bold;'>$error</p>";
-    }
-    ?>
+   
 </main>
 
 <?php include 'footer.php'; ?>

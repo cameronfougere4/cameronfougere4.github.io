@@ -1,3 +1,9 @@
+<?php
+// MODEL section
+$username = $_COOKIE['todo-username'] ?? '';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +19,20 @@
 <?php include 'nav.php'; ?>
 
 <main>
-    <h1>My To-Do List</h1>
+    <h1>
+    <?php 
+        if (!empty($username)) {
+            echo htmlspecialchars($username) . "'s To-Do List!";
+        } else {
+            echo "My To-Do List";
+        }
+    ?>
+</h1>
+
     <form onsubmit="event.preventDefault(); addItem();">
     <input type="text" id="new-item" placeholder="New task">
     <button type="submit">Add</button>
 </form>
-
 
     
     <ul id="todo-list"></ul>
