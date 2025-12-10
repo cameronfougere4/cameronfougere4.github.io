@@ -1,35 +1,90 @@
 <?php
-// ======= PHP at the very top, before any HTML =======
-$error = ''; // Initialize error variable
+session_start(); 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    session_destroy();
+    session_start(); 
+    $loggedOutMessage = "Successfully logged out.";
+}
+
+if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
+    header("Location: to-do.php");
+    exit();
+}
+
+
+$error = ''; 
+$savedUsername = $_COOKIE['todo-username'] ?? '';
+
+// Path to login_attempts.json (new)
+$loginAttemptsFile = 'login_attempts.json';
+
+// Load login attempts from JSON (new)
+if (file_exists($loginAttemptsFile)) {
+    $attempts = json_decode(file_get_contents($loginAttemptsFile), true);
+    if ($attempts === null) $attempts = [];
+} else {
+    $attempts = [];
+}
+
+// Handle login submission (modified)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
+    $username = $_POST['username'] ?? '';
     $enteredPassword = $_POST['password'] ?? '';
-    $hashedPassword = hash("sha256", $enteredPassword); // compute hash of input
+    $hashedPassword = hash("sha256", $enteredPassword); 
     $correctHash = "b14e9015dae06b5e206c2b37178eac45e193792c5ccf1d48974552614c61f2ff";
 
-    if ($hashedPassword === $correctHash) {
+    // ====== Initialize attempts for user if not exists (new) ======
+    if (!isset($attempts[$username])) {
+        $attempts[$username] = [
+            'attempts' => 0,
+            'locked_until' => 0
+        ];
+    }
+
+    // ====== Check if user is currently locked out (new) ======
+    if ($attempts[$username]['locked_until'] > time()) {
+        $remaining = $attempts[$username]['locked_until'] - time();
+        $error = "User $username is locked out. Try again in $remaining seconds.";
+    } else {
+        // ====== Password verification ======
+        if (!empty($username) && $hashedPassword === $correctHash) {
+            // Reset attempts on successful login (new)
+            $attempts[$username]['attempts'] = 0;
+            $attempts[$username]['locked_until'] = 0;
+            file_put_contents($loginAttemptsFile, json_encode($attempts));
+        
+        setcookie("todo-username", $username, time() + (86400 * 30));
+
+        
+        $_SESSION['is_logged_in'] = true;
+        $_SESSION['username'] = $username;
+
         header("Location: to-do.php");
         exit();
-    } else {
-        $error = "Incorrect password!";
+    } else { 
+		$attempts[$username]['attempts'] += 1;
+
+            if ($attempts[$username]['attempts'] >= 3) {
+                $attempts[$username]['locked_until'] = time() + 30; // lock for 30 sec
+                $attempts[$username]['attempts'] = 0;
+                $error = "Too many failed attempts! $username is locked for 30 seconds.";
+            } else {
+                $error = "Incorrect username or password! Attempt {$attempts[$username]['attempts']} of 3.";
+            }
+
+            file_put_contents($loginAttemptsFile, json_encode($attempts)); // save updates
+        }
     }
 }
 
-// Optional: Determine base URL for redirection
-if ($_SERVER['SERVER_NAME'] === 'localhost') {
-    $BASE_URL = ''; // relative path works for XAMPP
-} else if ($_SERVER['SERVER_NAME'] === 'osiris.ubishops.ca') {
-    $BASE_URL = '/cfougere/'; // replace 'cfougere' with your Osiris username
-} else {
-    $BASE_URL = '';
-}
 ?>
-
 
 
         
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,23 +99,37 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 <?php include 'nav.php'; ?>
 
 <main>
-    <h1>Enter Password to Access Your To-Do List</h1>
 
-    <form method="POST" action="">
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" id="password"><br><br>
-        <button type="submit">Submit</button>
-    </form>
-	
-	<?php if (!empty($error)) { ?>
+<h1>Enter Username and Password to Access Your To-Do List</h1>
+
+<?php if (!empty($loggedOutMessage)) { ?>
+    <p style="color:green;"><?php echo $loggedOutMessage; ?></p>
+<?php } ?>
+
+<form method="POST" action="">
+    <label for="username">Username:</label><br>
+    <input 
+        type="text" 
+        name="username" 
+        id="username"
+        value="<?php echo htmlspecialchars($savedUsername); ?>"
+        required
+    ><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" id="password" required><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<?php if (!empty($error)) { ?>
     <p style="color:red;"><?php echo $error; ?></p>
 <?php } ?>
 
-    <?php
-    if (!empty($error)) {
-        echo "<p style='color:red; font-weight:bold;'>$error</p>";
-    }
-    ?>
+
+ 
+
+   
 </main>
 
 <?php include 'footer.php'; ?>

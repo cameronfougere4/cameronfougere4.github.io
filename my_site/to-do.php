@@ -1,3 +1,19 @@
+<?php
+
+session_start(); 
+
+
+if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+
+$username = $_SESSION['username'] ?? $_COOKIE['todo-username'] ?? 'Guest';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +29,18 @@
 <?php include 'nav.php'; ?>
 
 <main>
-    <h1>My To-Do List</h1>
+<h1><?php echo htmlspecialchars($username); ?>'s To-Do List</h1>
+
+<form method="POST" action="login.php" style="position: absolute; top: 10px; right: 10px;">
+    <button type="submit" name="logout">Log out</button>
+</form>
+
+  
+
     <form onsubmit="event.preventDefault(); addItem();">
     <input type="text" id="new-item" placeholder="New task">
     <button type="submit">Add</button>
 </form>
-
 
     
     <ul id="todo-list"></ul>
